@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/models/creauture.dart';
+import 'package:untitled/data/creature_data.dart';
 
+
+
+creature cr = creatures[0];
 class ListPersons extends StatelessWidget {
-  const ListPersons({super.key});
+   ListPersons({super.key});
 
   final int _persons_number = 200;
 
@@ -46,25 +50,44 @@ class ListPersons extends StatelessWidget {
             ),
             SizedBox(height: 20),
 
+            MyCardView(myCreature: creatures[0]),
+            MyCardView(myCreature: creatures[1]),
           ],
+
         ),
       ),
     );
   }
 }
 
-class CardView extends StatelessWidget {
-  const CardView({super.key});
+class MyCardView extends StatelessWidget {
+  final creature myCreature;
+
+  MyCardView({super.key, required this.myCreature});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 343,
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 24),
       child: Row(
         children: [
-          Image.asset('name'),
+           Image(
+             width: 74,
+            image: AssetImage(myCreature.img),
+             fit: BoxFit.cover),
+          SizedBox(width: 18),
           Column(
+
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+
             children: [
+              SizedBox(height: 9),
+              Text(myCreature.isLive,
+              style: TextStyle(fontSize: 10, )),
+              Text(myCreature.name,  style: TextStyle(fontSize: 16, ),),
+              Text('$myCreature.type}, ${myCreature.sex}',  style: TextStyle(fontSize: 12, ),),
+              SizedBox(height: 9),
 
             ],
           )
