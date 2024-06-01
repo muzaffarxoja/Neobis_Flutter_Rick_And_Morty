@@ -5,7 +5,8 @@ class creature {
   final String type;
   final String sex;
 
-  creature({ required this.img, required this.isLive, required this.name, required this.type, required this.sex, });
+  creature({ required this.img, required this.isLive, required this.name,
+    required this.type, required this.sex, });
 
 
 

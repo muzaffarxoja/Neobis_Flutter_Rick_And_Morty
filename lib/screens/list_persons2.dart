@@ -5,16 +5,19 @@ import 'package:untitled/data/creature_data.dart';
 
 creature cr = creatures[0];
 
-class ListPersons extends StatelessWidget {
-  ListPersons({super.key});
+class ListPersons2 extends StatelessWidget {
+  ListPersons2({super.key});
 
   final int _persons_number = creatures.length;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-        body: Padding(
+      //backgroundColor: Theme.of(context).primaryColor,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
@@ -44,7 +47,8 @@ class ListPersons extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
+              child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                   itemCount: creatures.length,
                   itemBuilder: (context, index) =>
                       MyCardView(myCreature: creatures[index])),
@@ -68,35 +72,29 @@ class MyCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 24),
-      child: Row(
+      child: Column(
         children: [
           Image(
               width: 74, image: AssetImage(myCreature.img), fit: BoxFit.cover),
           SizedBox(width: 18),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(height: 9),
-              Text(myCreature.isLive,
-                  style: TextStyle(
-                    fontSize: 10,
-                  )),
-              Text(
-                myCreature.name,
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                '$myCreature.type}, ${myCreature.sex}',
-                style: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-              SizedBox(height: 9),
-            ],
-          )
+          SizedBox(height: 9),
+          Text(myCreature.isLive,
+              style: TextStyle(
+                fontSize: 10,
+              )),
+          Text(
+            myCreature.name,
+            style: TextStyle(
+              fontSize: 16,
+            ),
+          ),
+          Text(
+            '$myCreature.type}, ${myCreature.sex}',
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+          SizedBox(height: 9)
         ],
       ),
     );
