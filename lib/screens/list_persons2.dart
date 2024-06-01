@@ -70,13 +70,11 @@ class MyCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 24),
+    return Expanded(
       child: Column(
         children: [
           Image(
-              width: 74, image: AssetImage(myCreature.img), fit: BoxFit.cover),
-          SizedBox(width: 18),
+              width: 120, image: AssetImage(myCreature.img), fit: BoxFit.cover),
           SizedBox(height: 9),
           Text(myCreature.isLive,
               style: TextStyle(
@@ -89,7 +87,7 @@ class MyCardView extends StatelessWidget {
             ),
           ),
           Text(
-            '$myCreature.type}, ${myCreature.sex}',
+            '${myCreature.type}, ${myCreature.sex}',
             style: TextStyle(
               fontSize: 12,
             ),
