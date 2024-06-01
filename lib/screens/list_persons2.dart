@@ -14,9 +14,7 @@ class ListPersons2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Theme.of(context).primaryColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
+
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -48,10 +46,11 @@ class ListPersons2 extends StatelessWidget {
             SizedBox(height: 20),
             Expanded(
               child: GridView.builder(
+
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                   itemCount: creatures.length,
                   itemBuilder: (context, index) =>
-                      MyCardView(myCreature: creatures[index])),
+                      Expanded(child: MyCardView(myCreature: creatures[index]))),
             )
 
             // MyCardView(myCreature: creatures[0]),
@@ -70,31 +69,36 @@ class MyCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
+      height: 200,
       child: Column(
-        children: [
-          Image(
-              width: 120, image: AssetImage(myCreature.img), fit: BoxFit.cover),
-          SizedBox(height: 9),
-          Text(myCreature.isLive,
+          children: [
+            Image(
+                width: 100, image: AssetImage(myCreature.img), fit: BoxFit.cover),
+            SizedBox(height: 9),
+            Text(myCreature.isLive,
+                style: TextStyle(
+                  color: Color.fromRGBO(67, 208, 73, 1),
+
+                  fontSize: 10,
+                )),
+            Text(
+              myCreature.name,
               style: TextStyle(
-                fontSize: 10,
-              )),
-          Text(
-            myCreature.name,
-            style: TextStyle(
-              fontSize: 16,
+                color: Color.fromRGBO(255, 255, 255, 1),
+                fontSize: 16,
+              ),
             ),
-          ),
-          Text(
-            '${myCreature.type}, ${myCreature.sex}',
-            style: TextStyle(
-              fontSize: 12,
+            Text(
+              '${myCreature.type}, ${myCreature.sex}',
+              style: TextStyle(
+                color: Color.fromRGBO(110, 121, 140, 1),
+                fontSize: 12,
+              ),
             ),
-          ),
-          SizedBox(height: 9)
-        ],
-      ),
+            SizedBox(height: 9)
+          ],
+        ),
     );
   }
 }
