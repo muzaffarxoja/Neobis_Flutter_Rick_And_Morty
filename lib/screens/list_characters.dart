@@ -7,17 +7,24 @@ import 'package:untitled/main.dart';
 
 creature cr = creatures[0];
 
-class ListCharacters extends StatelessWidget {
+class ListCharacters extends StatefulWidget {
   ListCharacters({super.key});
 
+  @override
+  State<ListCharacters> createState() => _ListCharactersState();
+}
+
+class _ListCharactersState extends State<ListCharacters> {
   final int _persons_number = creatures.length;
+
+  bool _isGrid = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          body: SafeArea(
-          child: Padding(
-          padding: EdgeInsets.all(16),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               SizedBox(
@@ -26,43 +33,78 @@ class ListCharacters extends StatelessWidget {
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).primaryColorLight,
                     hintText: 'Найти персонажа',
-                    hintStyle: TextStyle(color: Color.fromRGBO(91, 105, 117, 1),),
-                    prefixIcon: Image(image: AssetImage('assets/icons/find.png'), width: 10),
-                    suffixIcon: Icon(Icons.filter_alt),
+                    hintStyle: const TextStyle(
+                      color: Color.fromRGBO(91, 105, 117, 1),
+                    ),
+                    prefixIcon: Image(
+                        image: _isGrid
+                            ? const AssetImage('assets/icons/list.png')
+                            : const AssetImage('assets/icons/find.png'),
+                        width: 10),
+                    suffixIcon: const Icon(Icons.filter_alt),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
-                        borderSide: BorderSide(width: 1)),
+                        borderSide: const BorderSide(width: 1)),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Всего персонажей: ${_persons_number}',style: TextStyle(color: Color.fromRGBO(91, 105, 117, 1)),),
+                  Text(
+                    'Всего персонажей: ${_persons_number}',
+                    style:
+                        const TextStyle(color: Color.fromRGBO(91, 105, 117, 1)),
+                  ),
                   IconButton(
-                      onPressed: () => context.go(gridCharacters), icon: Icon(Icons.grid_view_sharp))
+                      onPressed: () {
+                        setState(() {
+                          _isGrid = !_isGrid;
+                        });
+                      },
+                      icon: const Icon(Icons.grid_view_sharp))
                 ],
               ),
-              SizedBox(height: 20),
-              Expanded(
-                child: ListView.builder(
-                    itemCount: creatures.length,
-                    itemBuilder: (context, index)  {
-                        return GestureDetector(
-                            child: MyCardView(myCreature: creatures[index]),
-                            onTap: () {context.go(character);},
+              const SizedBox(height: 20),
 
-                        );
-                    }),
+              Expanded(
+                child: _buildList(),
               )
-          
+
               // MyCardView(myCreature: creatures[0]),
               // MyCardView(myCreature: creatures[1]),
             ],
           ),
-                ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildList() {
+    if (_isGrid) {
+      return GridView.builder(
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemCount: creatures.length,
+        itemBuilder: (context, index) => MyGridCard(
+          myCreature: creatures[index],
+          onTap: () {
+            context.go('$listCharacters/$character');
+          },
+        ),
+      );
+    }
+    return ListView.builder(
+      itemCount: creatures.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          child: MyCardView(myCreature: creatures[index]),
+          onTap: () {
+            context.go('$listCharacters/$character');
+          },
+        );
+      },
     );
   }
 }
@@ -75,41 +117,91 @@ class MyCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 24),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
       child: Row(
         children: [
           Image(
               width: 74, image: AssetImage(myCreature.img), fit: BoxFit.cover),
-          SizedBox(width: 18),
+          const SizedBox(width: 18),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 9),
+              const SizedBox(height: 9),
               Text(myCreature.isLive,
                   style: TextStyle(
-                    color:   (myCreature.isLive == 'живой') ? Color.fromRGBO(67, 208, 73, 1) : Colors.red,
+                    color: (myCreature.isLive == 'живой')
+                        ? const Color.fromRGBO(67, 208, 73, 1)
+                        : Colors.red,
                     fontSize: 10,
                   )),
               Text(
                 myCreature.name,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color.fromRGBO(255, 255, 255, 1),
                   fontSize: 16,
                 ),
               ),
               Text(
-
                 '$myCreature.type}, ${myCreature.sex}',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color.fromRGBO(110, 121, 140, 1),
                   fontSize: 12,
                 ),
               ),
-              SizedBox(height: 9),
+              const SizedBox(height: 9),
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class MyGridCard extends StatelessWidget {
+  final creature myCreature;
+
+  const MyGridCard({super.key, required this.myCreature, this.onTap});
+
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        height: 200,
+        child: Column(
+          children: [
+            Image(
+                width: 100,
+                image: AssetImage(myCreature.img),
+                fit: BoxFit.cover),
+            const SizedBox(height: 9),
+            Text(myCreature.isLive,
+                style: TextStyle(
+                  color: (myCreature.isLive == 'живой')
+                      ? const Color.fromRGBO(67, 208, 73, 1)
+                      : Colors.red,
+                  fontSize: 10,
+                )),
+            Text(
+              myCreature.name,
+              style: const TextStyle(
+                color: Color.fromRGBO(255, 255, 255, 1),
+                fontSize: 16,
+              ),
+            ),
+            Text(
+              '${myCreature.rise}, ${myCreature.sex}',
+              style: const TextStyle(
+                color: Color.fromRGBO(110, 121, 140, 1),
+                fontSize: 12,
+              ),
+            ),
+            const SizedBox(height: 9)
+          ],
+        ),
       ),
     );
   }

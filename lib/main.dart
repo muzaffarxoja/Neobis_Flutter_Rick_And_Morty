@@ -1,15 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/character.dart';
 import 'package:untitled/screens/filter.dart';
 import 'package:untitled/screens/list_characters.dart';
-import 'package:untitled/screens/grid_characters.dart';
 import 'package:go_router/go_router.dart';
 
 const String listCharacters = "/list_characters";
 const String gridCharacters = '/grid_characters';
-const String character = '/character';
+const String character = 'character';
 const String filter = '/filter';
-
 
 final _router = GoRouter(
   initialLocation: listCharacters,
@@ -18,26 +18,27 @@ final _router = GoRouter(
     GoRoute(
       path: listCharacters,
       builder: (context, state) => ListCharacters(),
+      routes: [
+        GoRoute(
+          path: character,
+          builder: (context, state) => const Character(),
+        ),
+      ]
     ),
-    GoRoute(
-      path: gridCharacters,
-      builder: (context, state) => GridCharacters(),
-    ),
-    GoRoute(
-      path: character,
-      builder: (context, state) => Character(),
-    ),
+
     GoRoute(
       path: filter,
-      builder: (context, state) => Filter(),
+      builder: (context, state) => const Filter(),
     ),
-
-
   ],
 );
 
 void main() {
-  runApp(const MyApp());
+  runZonedGuarded(() => runApp(const MyApp()),
+      (Object error, StackTrace stackTrace) {
+    print(error);
+    print(stackTrace);
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -47,16 +48,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme:
-      ThemeData(
-        scaffoldBackgroundColor: Color.fromRGBO(11, 30, 45, 1),
-        primaryColorLight: Color.fromRGBO(21, 42, 58, 1),
-        hintColor: Color.fromRGBO(91, 105, 117, 1),
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color.fromRGBO(11, 30, 45, 1),
+        primaryColorLight: const Color.fromRGBO(21, 42, 58, 1),
+        hintColor: const Color.fromRGBO(91, 105, 117, 1),
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Color.fromRGBO(11, 30, 45, 1),
+            seedColor: const Color.fromRGBO(11, 30, 45, 1),
             error: Colors.red,
             onTertiary: Colors.black45),
-
         useMaterial3: true,
       ),
       routerConfig: _router,
@@ -64,23 +63,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     theme: ThemeData(
-  //       scaffoldBackgroundColor: Color.fromRGBO(11, 30, 45, 1),
-  //       colorScheme: ColorScheme.fromSeed(
-  //       seedColor: Color.fromRGBO(11, 30, 45, 1),
-  //       error: Colors.red,
-  //       onTertiary: Colors.black45),
-  //       useMaterial3: true,
-  //     ),
-  //     home: Character(),
-  //
-  //
-  //   );
-
-
-
-
-
-
+// Widget build(BuildContext context) {
+//   return MaterialApp(
+//     theme: ThemeData(
+//       scaffoldBackgroundColor: Color.fromRGBO(11, 30, 45, 1),
+//       colorScheme: ColorScheme.fromSeed(
+//       seedColor: Color.fromRGBO(11, 30, 45, 1),
+//       error: Colors.red,
+//       onTertiary: Colors.black45),
+//       useMaterial3: true,
+//     ),
+//     home: Character(),
+//
+//
+//   );
