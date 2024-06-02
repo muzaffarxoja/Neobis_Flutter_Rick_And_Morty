@@ -23,8 +23,6 @@ class ListCharacters extends StatelessWidget {
               SizedBox(
                 height: 50,
                 child: TextField(
-
-          
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).primaryColorLight,
                     hintText: 'Найти персонажа',
