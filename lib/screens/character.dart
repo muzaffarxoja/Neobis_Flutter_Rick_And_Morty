@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/consts/consts.dart';
 import 'package:untitled/data/creature_data.dart';
+import 'package:go_router/go_router.dart';
+import 'package:untitled/main.dart';
+
 
 class Character extends StatelessWidget {
   const Character({super.key});
@@ -27,7 +30,9 @@ class Character extends StatelessWidget {
                 left: 20,
                 top: 218 / 5,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pop();
+                    },
                   icon: Icon(Icons.arrow_back),
                   color: Colors.white,
                   iconSize: 25,

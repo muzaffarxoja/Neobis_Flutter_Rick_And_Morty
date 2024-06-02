@@ -50,8 +50,13 @@ class ListCharacters extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                     itemCount: creatures.length,
-                    itemBuilder: (context, index) =>
-                        MyCardView(myCreature: creatures[index])),
+                    itemBuilder: (context, index)  {
+                        return GestureDetector(
+                            child: MyCardView(myCreature: creatures[index]),
+                            onTap: () {context.go(character);},
+
+                        );
+                    }),
               )
           
               // MyCardView(myCreature: creatures[0]),

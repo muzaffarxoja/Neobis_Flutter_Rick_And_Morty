@@ -8,6 +8,7 @@ const String listCharacters = "/list_characters";
 const String gridCharacters = '/grid_characters';
 const String character = '/character';
 
+
 final _router = GoRouter(
   initialLocation: listCharacters,
   routes: [
@@ -23,6 +24,8 @@ final _router = GoRouter(
       path: character,
       builder: (context, state) => Character(),
     ),
+
+
   ],
 );
 
