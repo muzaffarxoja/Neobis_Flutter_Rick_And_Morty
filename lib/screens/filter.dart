@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/consts/consts.dart';
 
+bool checkedValue = false;
+
 class Filter extends StatefulWidget {
   const Filter({super.key});
 
@@ -93,6 +95,122 @@ class _FilterState extends State<Filter> {
                     style: TextStyle(
                         fontSize: 10, color: Theme.of(context).hintColor),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: checkedValue,
+                        onChanged: (newValue) {
+                          setState(() {
+                            checkedValue = newValue!;
+                          });
+                        },
+                      ),
+                      Text(
+                        'Живой',
+                        style: TextStyle(fontSize: 14, color: Colors.white),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: checkedValue,
+                        onChanged: (newValue) {
+                          setState(() {
+                            checkedValue = newValue!;
+                          });
+                        },
+                      ),
+                      Text(
+                        'Мертвый',
+                        style: TextStyle(fontSize: 14, color: Colors.white),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: checkedValue,
+                        onChanged: (newValue) {
+                          setState(() {
+                            checkedValue = newValue!;
+                          });
+                        },
+                      ),
+                      Text(
+                        'Не известно',
+                        style: TextStyle(fontSize: 14, color: Colors.white),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                      height: 2, color: Theme.of(context).primaryColorLight),
+                  SizedBox(height: 20),
+                  Text(
+                    'СТАТУС',
+                    style: TextStyle(
+                        fontSize: 10, color: Theme.of(context).hintColor),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: checkedValue,
+                        onChanged: (newValue) {
+                          setState(() {
+                            checkedValue = newValue!;
+                          });
+                        },
+                      ),
+                      Text('Мужской',
+                        style: TextStyle(
+                            fontSize: 14, color: Colors.white),)
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: checkedValue,
+                        onChanged: (newValue) {
+                          setState(() {
+                            checkedValue = newValue!;
+                          });
+                        },
+                      ),
+                      Text('Женский',
+                        style: TextStyle(
+                            fontSize: 14, color: Colors.white),)
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: checkedValue,
+                        onChanged: (newValue) {
+                          setState(() {
+                            checkedValue = newValue!;
+                          });
+                        },
+                      ),
+                      Text('Безполый',
+                        style: TextStyle(
+                            fontSize: 14, color: Colors.white),)
+                    ],
+                  ),
                 ],
               ),
             )
@@ -102,4 +220,3 @@ class _FilterState extends State<Filter> {
     );
   }
 }
-
