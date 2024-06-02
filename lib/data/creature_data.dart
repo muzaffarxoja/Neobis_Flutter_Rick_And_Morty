@@ -5,8 +5,17 @@ final List<creature> creatures = [
     img: 'assets/images/image1.png',
     isLive: 'живой',
     name: 'Рик Санчез',
-    type: 'Человек',
+    rise: 'Человек',
     sex: 'Мужской',
+      born: 'Землч С-137',
+      location: 'Земля(Измерение подменны)',
+    episodes: [
+      ['Серия 1', 'Пилот', '2 декабря 2013'],
+      ['Серия 2', 'Пес-газонакасилшик', '9 декабря 2013'],
+      ['Серия 3', 'Анотамический парк', '16 декабря 2013'],
+      ['Серия 4','М. Найт Шьямал-Иноплане...','13 января 2014']
+    ]
+
 
   ),
 
@@ -14,8 +23,11 @@ final List<creature> creatures = [
     img:'assets/images/image2.png',
     isLive: 'живой' ,
     name: 'Директор Агенства',
-    type: 'Человек',
+    rise: 'Человек',
     sex: 'Мужской',
+      born: '',
+      location: '',
+      episodes: [[]]
 
   ),
 
@@ -23,8 +35,11 @@ final List<creature> creatures = [
     img: 'assets/images/image3.png',
     isLive: 'живой',
     name: 'Морти Смит',
-    type: 'Человек',
+    rise: 'Человек',
     sex: 'Мужской',
+      born: '',
+      location: '',
+      episodes: [[]]
 
   ),
 
@@ -32,8 +47,11 @@ final List<creature> creatures = [
     img: 'assets/images/image4.png',
     isLive: 'живой',
     name: 'Саммер Смит',
-    type: 'Человек',
+    rise: 'Человек',
     sex: "Женский",
+      born: '',
+      location: '',
+      episodes: [[]]
 
   ),
 
@@ -41,8 +59,11 @@ final List<creature> creatures = [
     img: 'assets/images/image5.png',
     isLive: 'мертвый',
     name: 'Альберт Эйнштейн',
-    type: 'Человек',
+    rise: 'Человек',
     sex: 'Мужской',
+      born: '',
+      location: '',
+      episodes: [[]]
 
   ),
 
@@ -51,8 +72,11 @@ final List<creature> creatures = [
     img: 'assets/images/image6.png',
     isLive: 'мертвый',
     name: 'Алан Райлс',
-    type: 'Человек',
+    rise: 'Человек',
     sex: 'Мужской',
+      born: '',
+      location: '',
+      episodes: [[]]
 
   ),
 

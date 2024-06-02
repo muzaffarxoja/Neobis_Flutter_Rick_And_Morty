@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/screens/character.dart';
 import 'package:untitled/screens/list_persons.dart';
 import 'package:untitled/screens/list_persons2.dart';
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         onTertiary: Colors.black45),
         useMaterial3: true,
       ),
-      home: ListPersons2(),
+      home: character(),
+
     );
   }
 }
