@@ -1,8 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/consts/consts.dart';
+import 'package:go_router/go_router.dart';
 
-bool checkedValue = false;
+bool checkedLive = false;
+bool checkedDied = false;
+bool checkedUnknown = false;
+bool checkedMale = false;
+bool checkedFemale = false;
+bool checkedNoSex = false;
+
+
 
 class Filter extends StatefulWidget {
   const Filter({super.key});
@@ -28,7 +36,7 @@ class _FilterState extends State<Filter> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {context.pop(); },
                       icon: Icon(Icons.arrow_back_outlined),
                       color: Colors.white,
                     ),
@@ -101,10 +109,10 @@ class _FilterState extends State<Filter> {
                   Row(
                     children: [
                       Checkbox(
-                        value: checkedValue,
+                        value: checkedLive,
                         onChanged: (newValue) {
                           setState(() {
-                            checkedValue = newValue!;
+                            checkedLive = newValue!;
                           });
                         },
                       ),
@@ -120,10 +128,10 @@ class _FilterState extends State<Filter> {
                   Row(
                     children: [
                       Checkbox(
-                        value: checkedValue,
+                        value: checkedDied,
                         onChanged: (newValue) {
                           setState(() {
-                            checkedValue = newValue!;
+                            checkedDied = newValue!;
                           });
                         },
                       ),
@@ -139,10 +147,10 @@ class _FilterState extends State<Filter> {
                   Row(
                     children: [
                       Checkbox(
-                        value: checkedValue,
+                        value: checkedUnknown,
                         onChanged: (newValue) {
                           setState(() {
-                            checkedValue = newValue!;
+                            checkedUnknown = newValue!;
                           });
                         },
                       ),
@@ -167,10 +175,10 @@ class _FilterState extends State<Filter> {
                   Row(
                     children: [
                       Checkbox(
-                        value: checkedValue,
+                        value: checkedMale,
                         onChanged: (newValue) {
                           setState(() {
-                            checkedValue = newValue!;
+                            checkedMale = newValue!;
                           });
                         },
                       ),
@@ -183,10 +191,10 @@ class _FilterState extends State<Filter> {
                   Row(
                     children: [
                       Checkbox(
-                        value: checkedValue,
+                        value: checkedFemale,
                         onChanged: (newValue) {
                           setState(() {
-                            checkedValue = newValue!;
+                            checkedFemale = newValue!;
                           });
                         },
                       ),
@@ -199,10 +207,10 @@ class _FilterState extends State<Filter> {
                   Row(
                     children: [
                       Checkbox(
-                        value: checkedValue,
+                        value: checkedNoSex,
                         onChanged: (newValue) {
                           setState(() {
-                            checkedValue = newValue!;
+                            checkedNoSex = newValue!;
                           });
                         },
                       ),
