@@ -12,8 +12,8 @@ const String filter = '/filter';
 
 
 final _router = GoRouter(
-  //initialLocation: listCharacters,
-  initialLocation: filter,
+  initialLocation: listCharacters,
+  //initialLocation: filter,
   routes: [
     GoRoute(
       path: listCharacters,
