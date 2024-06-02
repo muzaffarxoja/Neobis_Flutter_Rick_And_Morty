@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled/consts/consts.dart';
 import 'package:untitled/data/creature_data.dart';
 
-class character extends StatelessWidget {
-  const character({super.key});
+class Character extends StatelessWidget {
+  const Character({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +146,30 @@ class character extends StatelessWidget {
           ),
           SizedBox(
             height: 20,
+          ),
+          Expanded(
+            child: ListView.builder(
+                 itemCount: creatures[0].episodes.length,
+                itemBuilder: (context,index) {
+                   Column(
+                     children: [
+                       SizedBox(
+                         height: 20,
+                       ),
+                       Text(
+                         creatures[0].episodes[index][0],
+                         style: TextStyle(
+                           fontSize: 12,
+                           color: Color.fromRGBO(110, 121, 140, 1),
+                         ),
+                       ),
+                       Text(
+                         creatures[0].episodes[index][1],
+                         style: TextStyle(fontSize: 14, color: Colors.white),
+                       ),
+                     ],
+                   );
+                },),
           ),
         ],
       ),

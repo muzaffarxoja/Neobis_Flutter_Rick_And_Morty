@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/models/creauture.dart';
 import 'package:untitled/data/creature_data.dart';
+import 'package:go_router/go_router.dart';
+import 'package:untitled/main.dart';
 
 creature cr = creatures[0];
 
-class ListPersons2 extends StatelessWidget {
-  ListPersons2({super.key});
+class GridCharacters extends StatelessWidget {
+  GridCharacters({super.key});
 
   final int _persons_number = creatures.length;
 
@@ -43,7 +45,7 @@ class ListPersons2 extends StatelessWidget {
                   Text('Всего персонажей: ${_persons_number}',style: TextStyle(color: Color.fromRGBO(91, 105, 117, 1),),),
                   IconButton(
         
-                      onPressed: () {}, icon: Image(
+                      onPressed: () => context.go(listCharacters), icon: Image(
                        image: AssetImage('assets/icons/list.png'), fit: BoxFit.cover),)
                 ],
               ),
