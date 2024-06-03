@@ -63,17 +63,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Widget build(BuildContext context) {
-//   return MaterialApp(
-//     theme: ThemeData(
-//       scaffoldBackgroundColor: Color.fromRGBO(11, 30, 45, 1),
-//       colorScheme: ColorScheme.fromSeed(
-//       seedColor: Color.fromRGBO(11, 30, 45, 1),
-//       error: Colors.red,
-//       onTertiary: Colors.black45),
-//       useMaterial3: true,
-//     ),
-//     home: Character(),
-//
-//
-//   );
