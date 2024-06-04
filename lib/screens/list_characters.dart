@@ -5,6 +5,8 @@ import 'package:untitled/models/creauture.dart';
 import 'package:untitled/data/creature_data.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/widgets/card_for_grid.dart';
+import 'package:untitled/widgets/card_for_list.dart';
 
 creature cr = creatures[0];
 
@@ -102,7 +104,7 @@ class _ListCharactersState extends State<ListCharacters> {
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemCount: creatures.length,
-        itemBuilder: (context, index) => MyGridCard(
+        itemBuilder: (context, index) => CardForGrid(
           myCreature: creatures[index],
           onTap: () {
             context.go('$listCharacters/$character');
@@ -114,7 +116,7 @@ class _ListCharactersState extends State<ListCharacters> {
       itemCount: creatures.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          child: MyCardView(myCreature: creatures[index]),
+          child: CardForList(myCreature: creatures[index]),
           onTap: () {
             context.go('$listCharacters/$character');
           },
@@ -123,104 +125,104 @@ class _ListCharactersState extends State<ListCharacters> {
     );
   }
 }
-
-class MyCardView extends StatelessWidget {
-  final creature myCreature;
-
-  MyCardView({super.key, required this.myCreature});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
-      child: Row(
-        children: [
-          Image(
-              width: 74, image: AssetImage(myCreature.img), fit: BoxFit.cover),
-          const SizedBox(width: 18),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(height: 9),
-              Text(myCreature.isLive,
-                  style: TextStyle(
-                    color: (myCreature.isLive == 'живой')
-                        ? const Color.fromRGBO(67, 208, 73, 1)
-                        : Colors.red,
-                    fontSize: 10,
-                  )),
-              Text(
-                myCreature.name,
-                style: const TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                '$myCreature.type}, ${myCreature.sex}',
-                style: const TextStyle(
-                  color: Color.fromRGBO(110, 121, 140, 1),
-                  fontSize: 12,
-                ),
-              ),
-              const SizedBox(height: 9),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class MyGridCard extends StatelessWidget {
-  final creature myCreature;
-
-  const MyGridCard({super.key, required this.myCreature, this.onTap});
-
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        height: 200,
-        child: Column(
-          children: [
-            Image(
-                width: 100,
-                image: AssetImage(myCreature.img),
-                fit: BoxFit.cover),
-            const SizedBox(height: 9),
-            Text(myCreature.isLive,
-                style: TextStyle(
-                  color: (myCreature.isLive == 'живой')
-                      ? const Color.fromRGBO(67, 208, 73, 1)
-                      : Colors.red,
-                  fontSize: 10,
-                )),
-            Text(
-              myCreature.name,
-              style: const TextStyle(
-                color: Color.fromRGBO(255, 255, 255, 1),
-                fontSize: 16,
-              ),
-            ),
-            Text(
-              '${myCreature.rise}, ${myCreature.sex}',
-              style: const TextStyle(
-                color: Color.fromRGBO(110, 121, 140, 1),
-                fontSize: 12,
-              ),
-            ),
-            const SizedBox(height: 9)
-          ],
-        ),
-      ),
-    );
-  }
-}
+//
+// class CardForList extends StatelessWidget {
+//   final creature myCreature;
+//
+//   CardForList({super.key, required this.myCreature});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
+//       child: Row(
+//         children: [
+//           Image(
+//               width: 74, image: AssetImage(myCreature.img), fit: BoxFit.cover),
+//           const SizedBox(width: 18),
+//           Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             mainAxisAlignment: MainAxisAlignment.start,
+//             children: [
+//               const SizedBox(height: 9),
+//               Text(myCreature.isLive,
+//                   style: TextStyle(
+//                     color: (myCreature.isLive == 'живой')
+//                         ? const Color.fromRGBO(67, 208, 73, 1)
+//                         : Colors.red,
+//                     fontSize: 10,
+//                   )),
+//               Text(
+//                 myCreature.name,
+//                 style: const TextStyle(
+//                   color: Color.fromRGBO(255, 255, 255, 1),
+//                   fontSize: 16,
+//                 ),
+//               ),
+//               Text(
+//                 '$myCreature.type}, ${myCreature.sex}',
+//                 style: const TextStyle(
+//                   color: Color.fromRGBO(110, 121, 140, 1),
+//                   fontSize: 12,
+//                 ),
+//               ),
+//               const SizedBox(height: 9),
+//             ],
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// class CardForGrid extends StatelessWidget {
+//   final creature myCreature;
+//
+//   const CardForGrid({super.key, required this.myCreature, this.onTap});
+//
+//   final VoidCallback? onTap;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: onTap,
+//       child: SizedBox(
+//         height: 200,
+//         child: Column(
+//           children: [
+//             Image(
+//                 width: 100,
+//                 image: AssetImage(myCreature.img),
+//                 fit: BoxFit.cover),
+//             const SizedBox(height: 9),
+//             Text(myCreature.isLive,
+//                 style: TextStyle(
+//                   color: (myCreature.isLive == 'живой')
+//                       ? const Color.fromRGBO(67, 208, 73, 1)
+//                       : Colors.red,
+//                   fontSize: 10,
+//                 )),
+//             Text(
+//               myCreature.name,
+//               style: const TextStyle(
+//                 color: Color.fromRGBO(255, 255, 255, 1),
+//                 fontSize: 16,
+//               ),
+//             ),
+//             Text(
+//               '${myCreature.rise}, ${myCreature.sex}',
+//               style: const TextStyle(
+//                 color: Color.fromRGBO(110, 121, 140, 1),
+//                 fontSize: 12,
+//               ),
+//             ),
+//             const SizedBox(height: 9)
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class FindInput extends StatefulWidget {
   const FindInput({super.key});
@@ -230,14 +232,6 @@ class FindInput extends StatefulWidget {
 }
 
 class _FindInputState extends State<FindInput> {
-  static String textFieldName = "";
-  TextEditingController? _controller;
-  static String findKey = '';
-
-  void filterCharacter(String str) {
-    findKey = str;
-    context.go(findPage);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -261,12 +255,12 @@ class _FindInputState extends State<FindInput> {
           const SizedBox(width: 10),
           Expanded(
             child: TextField(
-              controller: _controller,
+              //controller: _controller,
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,
               ),
-              onChanged: (value) => textFieldName = value,
+              //onChanged: (value) => textFieldName = value,
               decoration: InputDecoration.collapsed(
                 hintText: 'Найти персонажа',
                 hintStyle: TextStyle(

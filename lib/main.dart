@@ -14,9 +14,9 @@ const String filter = '/filter';
 const String findPage = '/findPage';
 
 final _router = GoRouter(
-  //initialLocation: listCharacters,
+  initialLocation: listCharacters,
   //initialLocation: filter,
-    initialLocation: findPage,
+    //initialLocation: findPage,
   routes: [
     GoRoute(
       path: listCharacters,
