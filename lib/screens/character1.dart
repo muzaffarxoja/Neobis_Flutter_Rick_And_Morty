@@ -4,13 +4,14 @@ import 'package:untitled/data/creature_data.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/models/creauture.dart';
-import 'package:untitled/screens/list_characters.dart';
+import 'package:untitled/screens/list_characters.dart' as list;
 
 
-class MyCharacter extends StatelessWidget  {
+class MyCharacter extends StatelessWidget {
+  final creature singleCreature;
 
 
-  const MyCharacter({super.key});
+  const MyCharacter({super.key, required this.singleCreature});
 
 
 
@@ -85,7 +86,7 @@ class MyCharacter extends StatelessWidget  {
             ),
             Center(
               child: Text(
-                creatures[0].isLive,
+               'dfgdfgfdgd',
                 style: TextStyle(
                   fontSize: 14,
                   color: (creatures[0].isLive == 'живой')

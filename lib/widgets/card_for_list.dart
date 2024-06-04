@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:untitled/models/creauture.dart';
+import 'package:untitled/screens/character1.dart';
 
 class CardForList extends StatelessWidget {
   final creature myCreature;

@@ -1,15 +1,22 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/character.dart';
+import 'package:untitled/models/creauture.dart';
+//import 'package:untitled/models/creauture.dart';
+//import 'package:untitled/screens/character.dart';
+import 'package:untitled/screens/character1.dart';
 import 'package:untitled/screens/filter.dart';
 import 'package:untitled/screens/find_page.dart';
 import 'package:untitled/screens/list_characters.dart';
 import 'package:go_router/go_router.dart';
 
+//import 'data/creature_data.dart';
+
+
+
 const String listCharacters = "/list_characters";
 // const String gridCharacters = '/grid_characters';
-const String character = 'character';
+const String character = '/character';
 const String filter = '/filter';
 const String findPage = '/findPage';
 
@@ -24,7 +31,10 @@ final _router = GoRouter(
       routes: [
         GoRoute(
           path: character,
-          builder: (context, state) => const Character(),
+          builder: (context, state) =>
+            MyCharacter(singleCreature: state.extra as creature)
+
+
         ),
 
       ]
@@ -41,6 +51,7 @@ final _router = GoRouter(
   ],
 );
 
+
 void main() {
   runZonedGuarded(() => runApp(const MyApp()),
       (Object error, StackTrace stackTrace) {
@@ -51,6 +62,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
   // This widget is the root of your application.
   @override

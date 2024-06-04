@@ -10,6 +10,7 @@ import 'package:untitled/widgets/card_for_list.dart';
 
 creature cr = creatures[0];
 
+
 class ListCharacters extends StatefulWidget {
   ListCharacters({super.key});
 
@@ -21,6 +22,19 @@ class _ListCharactersState extends State<ListCharacters> {
   final int _persons_number = creatures.length;
 
   bool _isGrid = false;
+
+  //static creature singleCreature=creatures[0];
+
+  void showCharacter(index) {
+    setState(() {
+     // singleCreature=creatures[index];
+      context.go('$listCharacters/$character');
+    });
+
+
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +132,9 @@ class _ListCharactersState extends State<ListCharacters> {
         return GestureDetector(
           child: CardForList(myCreature: creatures[index]),
           onTap: () {
-            context.go('$listCharacters/$character');
+
+
+
           },
         );
       },
