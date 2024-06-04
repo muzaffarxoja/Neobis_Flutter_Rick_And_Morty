@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:untitled/models/creauture.dart';
 import 'package:untitled/data/creature_data.dart';
 import 'package:go_router/go_router.dart';
@@ -37,11 +38,15 @@ class _ListCharactersState extends State<ListCharacters> {
                       color: Color.fromRGBO(91, 105, 117, 1),
                     ),
                     prefixIcon: Image(
-                        image: _isGrid
-                            ? const AssetImage('assets/icons/list.png')
-                            : const AssetImage('assets/icons/find.png'),
-                        width: 10),
-                    suffixIcon: const Icon(Icons.filter_alt),
+                      image: const AssetImage('assets/icons/find.png'),
+                    ),
+                    suffixIcon: Icon(Icons.filter_alt),
+                    prefix: GestureDetector(
+                      onTap: () {},
+                    ),
+                    suffix: GestureDetector(
+                      onTap: () => context.go(filter),
+                    ),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
                         borderSide: const BorderSide(width: 1)),
@@ -58,12 +63,19 @@ class _ListCharactersState extends State<ListCharacters> {
                         const TextStyle(color: Color.fromRGBO(91, 105, 117, 1)),
                   ),
                   IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isGrid = !_isGrid;
-                        });
-                      },
-                      icon: const Icon(Icons.grid_view_sharp))
+                    onPressed: () {
+                      setState(() {
+                        _isGrid = !_isGrid;
+                      });
+                    },
+                    icon: Image(
+                      fit: BoxFit.cover,
+                      image: _isGrid
+                          ? const AssetImage('assets/icons/list.png')
+                          : const AssetImage('assets/icons/Grid.png'),
+                    ),
+                  ),
+                  //const Icon(Icons.grid_view_sharp))
                 ],
               ),
               const SizedBox(height: 20),
@@ -202,6 +214,78 @@ class MyGridCard extends StatelessWidget {
             const SizedBox(height: 9)
           ],
         ),
+      ),
+    );
+  }
+}
+
+class FindInput extends StatefulWidget {
+  const FindInput({super.key});
+
+  @override
+  State<FindInput> createState() => _FindInputState();
+}
+
+class _FindInputState extends State<FindInput> {
+  static String textFieldName = "";
+  TextEditingController? _controller;
+  static String findKey = '';
+
+  void filterCharacter(String str) {
+    findKey = str;
+    context.go(findPage);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 48,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        color: Theme.of(context).primaryColorLight,
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+        vertical: 12,
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/icons/search.png',
+            width: 24,
+            height: 24,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: TextField(
+              controller: _controller,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+              onChanged: (value) => textFieldName = value,
+              decoration: InputDecoration.collapsed(
+                hintText: 'Найти персонажа',
+                hintStyle: TextStyle(
+                  color: Theme.of(context).hintColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Container(
+            width: 1,
+            color: Colors.white.withOpacity(0.1),
+          ),
+          const SizedBox(width: 10),
+          Image.asset(
+            'assets/icons/filter.png',
+            width: 24,
+            height: 24,
+          ),
+        ],
       ),
     );
   }

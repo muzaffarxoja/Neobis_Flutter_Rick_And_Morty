@@ -3,17 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/character.dart';
 import 'package:untitled/screens/filter.dart';
+import 'package:untitled/screens/find_page.dart';
 import 'package:untitled/screens/list_characters.dart';
 import 'package:go_router/go_router.dart';
 
 const String listCharacters = "/list_characters";
-const String gridCharacters = '/grid_characters';
+// const String gridCharacters = '/grid_characters';
 const String character = 'character';
 const String filter = '/filter';
+const String findPage = '/findPage';
 
 final _router = GoRouter(
-  initialLocation: listCharacters,
+  //initialLocation: listCharacters,
   //initialLocation: filter,
+    initialLocation: findPage,
   routes: [
     GoRoute(
       path: listCharacters,
@@ -23,12 +26,17 @@ final _router = GoRouter(
           path: character,
           builder: (context, state) => const Character(),
         ),
+
       ]
     ),
 
     GoRoute(
       path: filter,
       builder: (context, state) => const Filter(),
+    ),
+    GoRoute(
+      path: findPage,
+      builder: (context, state) => const FindPage(),
     ),
   ],
 );

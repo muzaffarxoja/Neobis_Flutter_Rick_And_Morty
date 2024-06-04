@@ -3,3 +3,7 @@ new GestureDetector(
     Navigator.pushNamed(context, "myRoute");
   },
   child: new Text("my Title"),...
+
+
+  _foodList.where((food) =>
+   food.name.toLowerCase().contains(userInputValue.toLowerCase()).toList();
