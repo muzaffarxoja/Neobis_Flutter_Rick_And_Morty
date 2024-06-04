@@ -30,26 +30,29 @@ class _ListCharactersState extends State<ListCharacters> {
             children: [
               SizedBox(
                 height: 50,
-                child: TextField(
-                  decoration: InputDecoration(
-                    fillColor: Theme.of(context).primaryColorLight,
-                    hintText: 'Найти персонажа',
-                    hintStyle: const TextStyle(
-                      color: Color.fromRGBO(91, 105, 117, 1),
+                child: GestureDetector(
+                  onTap: () => context.go(findPage),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      fillColor: Theme.of(context).primaryColorLight,
+                      hintText: 'Найти персонажа',
+                      hintStyle: const TextStyle(
+                        color: Color.fromRGBO(91, 105, 117, 1),
+                      ),
+                      prefixIcon: Image(
+                        image: const AssetImage('assets/icons/find.png'),
+                      ),
+                      suffixIcon: Icon(Icons.filter_alt),
+                      prefix: GestureDetector(
+                        onTap: () {},
+                      ),
+                      suffix: GestureDetector(
+                        onTap: () => context.go(filter),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide: const BorderSide(width: 1)),
                     ),
-                    prefixIcon: Image(
-                      image: const AssetImage('assets/icons/find.png'),
-                    ),
-                    suffixIcon: Icon(Icons.filter_alt),
-                    prefix: GestureDetector(
-                      onTap: () {},
-                    ),
-                    suffix: GestureDetector(
-                      onTap: () => context.go(filter),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(width: 1)),
                   ),
                 ),
               ),
