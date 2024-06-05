@@ -9,19 +9,19 @@ import 'card_view.dart';
 
 class MyListView extends StatelessWidget {
 
-  final List<creature> foundList;
+  final List<creature> listOfCreatures;
 
-  const MyListView({super.key,required this.foundList});
+  const MyListView({super.key,required this.listOfCreatures});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: foundList.length,
+      itemCount: listOfCreatures.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          child: MyCardView(myCreature: foundList[index]),
+          child: MyCardView(myCreature: listOfCreatures[index]),
           onTap: () {
-            context.go('$listCharacters/$character');
+            context.go('$listCharacters/$character', extra: listOfCreatures[index]);
           },
         );
       },

@@ -16,7 +16,7 @@ import 'package:go_router/go_router.dart';
 
 const String listCharacters = "/list_characters";
 // const String gridCharacters = '/grid_characters';
-const String character = '/character';
+const String character = 'character';
 const String filter = '/filter';
 const String findPage = '/findPage';
 

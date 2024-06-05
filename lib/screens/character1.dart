@@ -68,7 +68,7 @@ class MyCharacter extends StatelessWidget {
                         color: Color(0xFF0B1E2D),
                       ),
                       padding: const EdgeInsets.all(10),
-                      child: Image.asset('${imgPath}image1.png'),
+                      child: Image.asset(singleCreature.img),
                     ),
                   ),
                 ],
@@ -80,16 +80,16 @@ class MyCharacter extends StatelessWidget {
             Center(
               child: Text(
 
-                creatures[0].name,
+                singleCreature.name,
                 style: const TextStyle(fontSize: 34, color: Colors.white),
               ),
             ),
             Center(
               child: Text(
-               'dfgdfgfdgd',
+               singleCreature.isLive,
                 style: TextStyle(
                   fontSize: 14,
-                  color: (creatures[0].isLive == 'живой')
+                  color: (singleCreature.isLive == 'живой')
                       ? const Color.fromRGBO(67, 208, 73, 1)
                       : Colors.red,
                 ),
@@ -112,7 +112,7 @@ class MyCharacter extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      creatures[0].sex,
+                      singleCreature.sex,
                       style: const TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ],
@@ -131,7 +131,7 @@ class MyCharacter extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      creatures[0].rise,
+                      singleCreature.rise,
                       style: const TextStyle(fontSize: 14, color: Colors.white),
                     ),
                   ],
@@ -149,7 +149,7 @@ class MyCharacter extends StatelessWidget {
               ),
             ),
             Text(
-              creatures[0].born,
+              singleCreature.born,
               style: const TextStyle(fontSize: 14, color: Colors.white),
             ),
             const SizedBox(
@@ -163,7 +163,7 @@ class MyCharacter extends StatelessWidget {
               ),
             ),
             Text(
-              creatures[0].location,
+              singleCreature.location,
               style: const TextStyle(fontSize: 14, color: Colors.white),
             ),
             const SizedBox(
@@ -174,33 +174,40 @@ class MyCharacter extends StatelessWidget {
               width: double.infinity,
               color: const Color.fromRGBO(21, 42, 58, 1),
             ),
-            const Text(
-              'Эпизоды',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+            Align(
+              alignment: Alignment.topCenter,
+              child: const Text(
+                'Эпизоды',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+
             ListView.builder(
-              itemCount: creatures[0].episodes.length,
+              itemCount: singleCreature.episodes.length,
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              //physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: 20,
                     ),
                     Text(
-                      creatures[0].episodes[index][0],
+                      singleCreature.episodes[index][0],
                       style: const TextStyle(
                         fontSize: 12,
-                        color: Color.fromRGBO(110, 121, 140, 1),
+                        color: Color.fromRGBO( 34, 162, 189, 0.87),
                       ),
                     ),
                     Text(
-                      creatures[0].episodes[index][1],
+                      singleCreature.episodes[index][1],
                       style: const TextStyle(fontSize: 14, color: Colors.white),
+                    ),
+                    Text(
+                      singleCreature.episodes[index][2],
+                      style: const TextStyle(fontSize: 14,
+                        color: Color.fromRGBO( 110, 121, 140, 1),),
                     ),
                   ],
                 );

@@ -121,7 +121,7 @@ class _ListCharactersState extends State<ListCharacters> {
         itemBuilder: (context, index) => CardForGrid(
           myCreature: creatures[index],
           onTap: () {
-            context.go('$listCharacters/$character');
+            context.go('$listCharacters/$character', extra: creatures[index]);
           },
         ),
       );
@@ -131,7 +131,7 @@ class _ListCharactersState extends State<ListCharacters> {
       itemBuilder: (context, index) {
         return GestureDetector(
           child: CardForList(myCreature: creatures[index]),
-          onTap: () {
+          onTap: () {  context.go('$listCharacters/$character', extra: creatures[index]);
 
 
 

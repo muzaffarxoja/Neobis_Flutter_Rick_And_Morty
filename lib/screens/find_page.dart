@@ -123,7 +123,7 @@ class _FindInputState extends State<FindInput> {
           const SizedBox(height: 20),
           Expanded(
               child: (_foundList.isNotEmpty)
-                  ? MyListView(foundList: _foundList)
+                  ? MyListView(listOfCreatures: _foundList)
                   : Image.asset('assets/images/not_found.png',
                       width: 134, fit: BoxFit.cover))
         ],
