@@ -27,3 +27,39 @@ TextField(
                   borderSide: const BorderSide(width: 1)),
             ),
           ),
+
+
+
+final _router = GoRouter(
+
+  initialLocation: listCharacters,
+  //initialLocation: filter,
+    //initialLocation: findPage,
+  routes: [
+    GoRoute(
+      path: listCharacters,
+      builder: (context, state) => ListCharacters(),
+      routes: [
+        GoRoute(
+          path: character,
+          builder: (context, state) =>
+            MyCharacter(singleCreature: state.extra as creature)
+
+
+        ),
+
+      ]
+    ),
+
+    GoRoute(
+      path: filter,
+      builder: (context, state) => const Filter(),
+    ),
+    GoRoute(
+      path: findPage,
+      builder: (context, state) => const FindPage(),
+    ),
+  ],
+);
+
+

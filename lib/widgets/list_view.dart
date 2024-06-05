@@ -20,9 +20,9 @@ class MyListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           child: MyCardView(myCreature: listOfCreatures[index]),
-          onTap: () {
-            context.go('$listCharacters/$character', extra: listOfCreatures[index]);
-          },
+          // onTap: () {context.go('/$character', extra: listOfCreatures[index]);
+          //   //$listCharacters
+          // },
         );
       },
     );
