@@ -47,8 +47,9 @@ class _ListCharactersState extends State<ListCharacters> {
               SizedBox(
                 height: 50,
                 child: GestureDetector(
-                  onTap: () => context.go(findPage),
+                  //onTap: () => context.go(findPage),
                   child: TextField(
+                    onTap: () => context.push(findPage),
                     decoration: InputDecoration(
                       fillColor: Theme.of(context).primaryColorLight,
                       hintText: 'Найти персонажа',
@@ -120,125 +121,18 @@ class _ListCharactersState extends State<ListCharacters> {
         itemCount: creatures.length,
         itemBuilder: (context, index) => CardForGrid(
           myCreature: creatures[index],
-          onTap: () {
-            context.push('$character', extra: creatures[index]);
-          },
+
         ),
       );
     }
     return ListView.builder(
       itemCount: creatures.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          child: CardForList(myCreature: creatures[index]),
-          onTap: () {  context.push('$character', extra: creatures[index]);
-
-
-
-          },
-        );
+        return CardForList(myCreature: creatures[index]);
       },
     );
   }
 }
-//
-// class CardForList extends StatelessWidget {
-//   final creature myCreature;
-//
-//   CardForList({super.key, required this.myCreature});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
-//       child: Row(
-//         children: [
-//           Image(
-//               width: 74, image: AssetImage(myCreature.img), fit: BoxFit.cover),
-//           const SizedBox(width: 18),
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             children: [
-//               const SizedBox(height: 9),
-//               Text(myCreature.isLive,
-//                   style: TextStyle(
-//                     color: (myCreature.isLive == 'живой')
-//                         ? const Color.fromRGBO(67, 208, 73, 1)
-//                         : Colors.red,
-//                     fontSize: 10,
-//                   )),
-//               Text(
-//                 myCreature.name,
-//                 style: const TextStyle(
-//                   color: Color.fromRGBO(255, 255, 255, 1),
-//                   fontSize: 16,
-//                 ),
-//               ),
-//               Text(
-//                 '$myCreature.type}, ${myCreature.sex}',
-//                 style: const TextStyle(
-//                   color: Color.fromRGBO(110, 121, 140, 1),
-//                   fontSize: 12,
-//                 ),
-//               ),
-//               const SizedBox(height: 9),
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
-//
-// class CardForGrid extends StatelessWidget {
-//   final creature myCreature;
-//
-//   const CardForGrid({super.key, required this.myCreature, this.onTap});
-//
-//   final VoidCallback? onTap;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       onTap: onTap,
-//       child: SizedBox(
-//         height: 200,
-//         child: Column(
-//           children: [
-//             Image(
-//                 width: 100,
-//                 image: AssetImage(myCreature.img),
-//                 fit: BoxFit.cover),
-//             const SizedBox(height: 9),
-//             Text(myCreature.isLive,
-//                 style: TextStyle(
-//                   color: (myCreature.isLive == 'живой')
-//                       ? const Color.fromRGBO(67, 208, 73, 1)
-//                       : Colors.red,
-//                   fontSize: 10,
-//                 )),
-//             Text(
-//               myCreature.name,
-//               style: const TextStyle(
-//                 color: Color.fromRGBO(255, 255, 255, 1),
-//                 fontSize: 16,
-//               ),
-//             ),
-//             Text(
-//               '${myCreature.rise}, ${myCreature.sex}',
-//               style: const TextStyle(
-//                 color: Color.fromRGBO(110, 121, 140, 1),
-//                 fontSize: 12,
-//               ),
-//             ),
-//             const SizedBox(height: 9)
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class FindInput extends StatefulWidget {
   const FindInput({super.key});

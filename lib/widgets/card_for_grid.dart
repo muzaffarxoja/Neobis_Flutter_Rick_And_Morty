@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:untitled/models/creauture.dart';
+import 'package:go_router/go_router.dart';
+
+import '../main.dart';
 
 class CardForGrid extends StatelessWidget {
   final creature myCreature;
@@ -12,7 +15,9 @@ class CardForGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {context.push('$character', extra: myCreature);
+
+      },
       child: SizedBox(
         height: 200,
         child: Column(

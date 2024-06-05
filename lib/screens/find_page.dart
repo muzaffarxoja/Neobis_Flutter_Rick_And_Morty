@@ -81,8 +81,9 @@ class _FindInputState extends State<FindInput> {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () => context.pop(),
                   child: Image.asset(
+
                     'assets/icons/arrow.png',
                     width: 24,
                     height: 24,

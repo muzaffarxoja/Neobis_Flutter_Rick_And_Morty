@@ -75,7 +75,7 @@ class MyCharacter extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 110,
+              height: 10,
             ),
             Center(
               child: Text(

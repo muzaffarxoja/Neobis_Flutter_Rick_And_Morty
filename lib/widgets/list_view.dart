@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/data/creature_data.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/widgets/card_for_list.dart';
 import '../models/creauture.dart';
-import 'card_view.dart';
+
 
 
 class MyListView extends StatelessWidget {
@@ -18,12 +19,7 @@ class MyListView extends StatelessWidget {
     return ListView.builder(
       itemCount: listOfCreatures.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          child: MyCardView(myCreature: listOfCreatures[index]),
-          // onTap: () {context.go('/$character', extra: listOfCreatures[index]);
-          //   //$listCharacters
-          // },
-        );
+        return CardForList(myCreature: listOfCreatures[index]);
       },
     );
   }
