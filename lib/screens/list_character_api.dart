@@ -21,8 +21,8 @@ class ListCharacters extends StatefulWidget {
 
 class _ListCharactersState extends State<ListCharacters> {
 
-  static List<Character>? charList;
-  var _personNumber;
+  List<Character> charList = [];
+  int _personNumber = 0;
 
   bool _isGrid = false;
 
@@ -37,7 +37,7 @@ class _ListCharactersState extends State<ListCharacters> {
   Future<void> _loadCharacters() async {
     charList = await CharactersRepository().getCharactersList();
     setState(() {
-      _personNumber = charList?.length ?? 0;
+      _personNumber = charList.length;
     });
   }
 
@@ -134,17 +134,17 @@ class _ListCharactersState extends State<ListCharacters> {
       return GridView.builder(
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: charList!.length,
+        itemCount: charList.length,
         itemBuilder: (context, index) => CardForGrid(
-          myCharacter: charList![index],
+          myCharacter: charList[index],
 
         ),
       );
     }
     return ListView.builder(
-      itemCount: charList!.length,
+      itemCount: charList.length,
       itemBuilder: (context, index) {
-        return CardForList(myCharacter: charList![index]);
+        return CardForList(myCharacter: charList[index]);
       },
     );
   }

@@ -22,7 +22,7 @@ class CardForGrid extends StatelessWidget {
           children: [
             Image(
                 width: 100,
-                image: AssetImage(myCharacter.image),
+                image: NetworkImage(myCharacter.image),
                 fit: BoxFit.cover),
             const SizedBox(height: 9),
             Text(myCharacter.status,

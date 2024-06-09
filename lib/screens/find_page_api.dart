@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:untitled/main.dart';
 import 'package:dio/dio.dart';
 import 'package:untitled/models/character.dart';
 
 import 'package:untitled/widgets/list_view_api.dart';
-import 'package:untitled/screens/list_character_api.dart' as list;
 
 class FindPage extends StatefulWidget {
   const FindPage({super.key});
@@ -15,7 +13,6 @@ class FindPage extends StatefulWidget {
 }
 
 class _FindPageState extends State<FindPage> {
-
   @override
   void initState() {
     super.initState();
@@ -53,7 +50,7 @@ class _FindInputState extends State<FindInput> {
           .get('https://rickandmortyapi.com/api/character/?name=<${findWord}>');
 
       List<dynamic> data =
-          response.data; // Dio already decodes the JSON for you
+          response.data['results']; // Dio already decodes the JSON for you
       List<Character> characterList =
           data.map((json) => Character.fromJson(json)).toList();
       return characterList;
@@ -63,10 +60,9 @@ class _FindInputState extends State<FindInput> {
     }
   }
 
-  void filterCharacter(String value) {
-    setState(() {
-      _foundList = findCharactersList(value.toLowerCase()) as List<Character>;
-    });
+  void filterCharacter(String value) async {
+    _foundList = await findCharactersList(value.toLowerCase());
+    setState(() {});
   }
 
   @override

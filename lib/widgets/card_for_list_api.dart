@@ -22,7 +22,7 @@ class CardForList extends StatelessWidget {
         child: Row(
           children: [
             Image(
-                width: 74, image: AssetImage(myCharacter.image), fit: BoxFit.cover),
+                width: 74, image: NetworkImage(myCharacter.image), fit: BoxFit.cover),
             const SizedBox(width: 18),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

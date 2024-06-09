@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/consts/consts.dart';
 import 'package:go_router/go_router.dart';
-import 'package:untitled/main.dart';
 import 'package:untitled/models/character.dart';
-
-
-
 
 class MyCharacter extends StatelessWidget {
   final Character singleCreature;
 
-
   const MyCharacter({super.key, required this.singleCreature});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +60,17 @@ class MyCharacter extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: Color(0xFF0B1E2D),
                       ),
-                      padding: const EdgeInsets.all(10),
-                      child: Image.asset(singleCreature.image),
+                      alignment: Alignment.center,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(75),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.network(
+                          width: 140,
+                          height: 140,
+                          singleCreature.image,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -79,14 +81,13 @@ class MyCharacter extends StatelessWidget {
             ),
             Center(
               child: Text(
-
                 singleCreature.name,
                 style: const TextStyle(fontSize: 34, color: Colors.white),
               ),
             ),
             Center(
               child: Text(
-               singleCreature.status,
+                singleCreature.status,
                 style: TextStyle(
                   fontSize: 14,
                   color: (singleCreature.status == 'live')
@@ -174,18 +175,17 @@ class MyCharacter extends StatelessWidget {
               width: double.infinity,
               color: const Color.fromRGBO(21, 42, 58, 1),
             ),
-            Align(
+            const Align(
               alignment: Alignment.topCenter,
-              child: const Text(
+              child: Text(
                 'Эпизоды',
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
-
             ListView.builder(
               itemCount: singleCreature.episode.length,
               shrinkWrap: true,
-              //physics: const NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,20 +194,22 @@ class MyCharacter extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      singleCreature.episode[0],
+                      singleCreature.episode[index],
                       style: const TextStyle(
                         fontSize: 12,
-                        color: Color.fromRGBO( 34, 162, 189, 0.87),
+                        color: Color.fromRGBO(34, 162, 189, 0.87),
                       ),
                     ),
                     Text(
-                      singleCreature.episode[0],
+                      singleCreature.episode[index],
                       style: const TextStyle(fontSize: 14, color: Colors.white),
                     ),
                     Text(
-                      singleCreature.episode[0],
-                      style: const TextStyle(fontSize: 14,
-                        color: Color.fromRGBO( 110, 121, 140, 1),),
+                      singleCreature.episode[index],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Color.fromRGBO(110, 121, 140, 1),
+                      ),
                     ),
                   ],
                 );

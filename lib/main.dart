@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:untitled/models/character.dart';
-import 'package:untitled/screens/character_api.dart';
+import 'package:untitled/screens/my_character.dart';
 import 'package:untitled/screens/filter.dart';
 import 'package:untitled/screens/find_page_api.dart';
 import 'package:untitled/screens/list_character_api.dart';
@@ -40,7 +40,10 @@ final _router = GoRouter(
 );
 
 void main() {
-  runZonedGuarded(() => runApp(const MyApp()),
+  runZonedGuarded(() {
+
+    runApp(const MyApp());
+  },
       (Object error, StackTrace stackTrace) {
     print(error);
     print(stackTrace);
