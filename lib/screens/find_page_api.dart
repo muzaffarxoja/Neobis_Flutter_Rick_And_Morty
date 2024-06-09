@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/main.dart';
-import 'package:untitled/models/creauture.dart';
-import 'package:untitled/data/creature_data.dart';
-import 'package:untitled/widgets/list_view.dart';
+import 'package:dio/dio.dart';
+import 'package:untitled/models/character.dart';
+
+import 'package:untitled/widgets/list_view_api.dart';
+import 'package:untitled/screens/list_character_api.dart' as list;
 
 class FindPage extends StatefulWidget {
   const FindPage({super.key});
@@ -13,12 +15,10 @@ class FindPage extends StatefulWidget {
 }
 
 class _FindPageState extends State<FindPage> {
-  List<creature> _foundList = [];
 
   @override
   void initState() {
-        super.initState();
-        _foundList=creatures;
+    super.initState();
   }
 
   @override
@@ -37,25 +37,35 @@ class FindInput extends StatefulWidget {
 }
 
 class _FindInputState extends State<FindInput> {
-  List<creature> _foundList = [];
+  List<Character> _foundList = [];
   final fieldText = TextEditingController();
 
   bool _isEmpty = true;
 
   void clearText() {
-
-      fieldText.clear();
-      filterCharacter('');
-
-
+    fieldText.clear();
+    filterCharacter('');
   }
 
-  void filterCharacter(value) {
+  Future<List<Character>> findCharactersList(String findWord) async {
+    try {
+      final response = await Dio()
+          .get('https://rickandmortyapi.com/api/character/?name=<${findWord}>');
+
+      List<dynamic> data =
+          response.data; // Dio already decodes the JSON for you
+      List<Character> characterList =
+          data.map((json) => Character.fromJson(json)).toList();
+      return characterList;
+    } catch (e) {
+      print('Request failed with error: $e');
+      return [];
+    }
+  }
+
+  void filterCharacter(String value) {
     setState(() {
-      _foundList = creatures
-          .where((element) =>
-              element.name.toLowerCase().contains(value.toLowerCase()))
-          .toList();
+      _foundList = findCharactersList(value.toLowerCase()) as List<Character>;
     });
   }
 
@@ -83,7 +93,6 @@ class _FindInputState extends State<FindInput> {
                 GestureDetector(
                   onTap: () => context.pop(),
                   child: Image.asset(
-
                     'assets/icons/arrow.png',
                     width: 24,
                     height: 24,
@@ -124,7 +133,7 @@ class _FindInputState extends State<FindInput> {
           const SizedBox(height: 20),
           Expanded(
               child: (_foundList.isNotEmpty)
-                  ? MyListView(listOfCreatures: _foundList)
+                  ? MyListView(listOfCharacters: _foundList)
                   : Image.asset('assets/images/not_found.png',
                       width: 134, fit: BoxFit.cover))
         ],

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/consts/consts.dart';
-import 'package:untitled/data/creature_data.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/main.dart';
-import 'package:untitled/models/creauture.dart';
-import 'package:untitled/screens/list_characters.dart' as list;
+import 'package:untitled/models/character.dart';
+
+
 
 
 class MyCharacter extends StatelessWidget {
-  final creature singleCreature;
+  final Character singleCreature;
 
 
   const MyCharacter({super.key, required this.singleCreature});
@@ -68,7 +68,7 @@ class MyCharacter extends StatelessWidget {
                         color: Color(0xFF0B1E2D),
                       ),
                       padding: const EdgeInsets.all(10),
-                      child: Image.asset(singleCreature.img),
+                      child: Image.asset(singleCreature.image),
                     ),
                   ),
                 ],
@@ -86,10 +86,10 @@ class MyCharacter extends StatelessWidget {
             ),
             Center(
               child: Text(
-               singleCreature.isLive,
+               singleCreature.status,
                 style: TextStyle(
                   fontSize: 14,
-                  color: (singleCreature.isLive == 'живой')
+                  color: (singleCreature.status == 'live')
                       ? const Color.fromRGBO(67, 208, 73, 1)
                       : Colors.red,
                 ),
@@ -112,7 +112,7 @@ class MyCharacter extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      singleCreature.sex,
+                      singleCreature.gender,
                       style: const TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ],
@@ -131,7 +131,7 @@ class MyCharacter extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      singleCreature.rise,
+                      singleCreature.species,
                       style: const TextStyle(fontSize: 14, color: Colors.white),
                     ),
                   ],
@@ -149,7 +149,7 @@ class MyCharacter extends StatelessWidget {
               ),
             ),
             Text(
-              singleCreature.born,
+              singleCreature.status,
               style: const TextStyle(fontSize: 14, color: Colors.white),
             ),
             const SizedBox(
@@ -163,7 +163,7 @@ class MyCharacter extends StatelessWidget {
               ),
             ),
             Text(
-              singleCreature.location,
+              singleCreature.gender,
               style: const TextStyle(fontSize: 14, color: Colors.white),
             ),
             const SizedBox(
@@ -183,7 +183,7 @@ class MyCharacter extends StatelessWidget {
             ),
 
             ListView.builder(
-              itemCount: singleCreature.episodes.length,
+              itemCount: singleCreature.episode.length,
               shrinkWrap: true,
               //physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
@@ -194,18 +194,18 @@ class MyCharacter extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      singleCreature.episodes[index][0],
+                      singleCreature.episode[0],
                       style: const TextStyle(
                         fontSize: 12,
                         color: Color.fromRGBO( 34, 162, 189, 0.87),
                       ),
                     ),
                     Text(
-                      singleCreature.episodes[index][1],
+                      singleCreature.episode[0],
                       style: const TextStyle(fontSize: 14, color: Colors.white),
                     ),
                     Text(
-                      singleCreature.episodes[index][2],
+                      singleCreature.episode[0],
                       style: const TextStyle(fontSize: 14,
                         color: Color.fromRGBO( 110, 121, 140, 1),),
                     ),

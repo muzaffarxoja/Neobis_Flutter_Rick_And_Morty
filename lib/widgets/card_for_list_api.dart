@@ -2,20 +2,19 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:untitled/models/creauture.dart';
-import 'package:untitled/screens/character.dart';
+import 'package:untitled/models/character.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/main.dart';
 
 class CardForList extends StatelessWidget {
-  final creature myCreature;
+  final Character myCharacter;
 
-  CardForList({super.key, required this.myCreature});
+  CardForList({super.key, required this.myCharacter});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {context.push('$character', extra: myCreature);
+      onTap: () {context.push('$character', extra: myCharacter);
 
       },
       child: Container(
@@ -23,29 +22,29 @@ class CardForList extends StatelessWidget {
         child: Row(
           children: [
             Image(
-                width: 74, image: AssetImage(myCreature.img), fit: BoxFit.cover),
+                width: 74, image: AssetImage(myCharacter.image), fit: BoxFit.cover),
             const SizedBox(width: 18),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(height: 9),
-                Text(myCreature.isLive,
+                Text(myCharacter.status,
                     style: TextStyle(
-                      color: (myCreature.isLive == 'живой')
+                      color: (myCharacter.status == 'live')
                           ? const Color.fromRGBO(67, 208, 73, 1)
                           : Colors.red,
                       fontSize: 10,
                     )),
                 Text(
-                  myCreature.name,
+                  myCharacter.name,
                   style: const TextStyle(
                     color: Color.fromRGBO(255, 255, 255, 1),
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  '$myCreature.type}, ${myCreature.sex}',
+                  '$myCharacter.type}, ${myCharacter.gender}',
                   style: const TextStyle(
                     color: Color.fromRGBO(110, 121, 140, 1),
                     fontSize: 12,

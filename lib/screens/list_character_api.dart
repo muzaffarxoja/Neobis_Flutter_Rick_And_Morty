@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/models/creauture.dart';
-import 'package:untitled/data/creature_data.dart';
+import 'package:untitled/data/repositories/characters/characters_repository.dart';
+import 'package:untitled/models/character.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:untitled/main.dart';
-import 'package:untitled/widgets/card_for_grid.dart';
-import 'package:untitled/widgets/card_for_list.dart';
+import 'package:untitled/widgets/card_for_grid_api.dart';
+import 'package:untitled/widgets/card_for_list_api.dart';
 
-creature cr = creatures[0];
+
 
 
 class ListCharacters extends StatefulWidget {
@@ -19,11 +20,26 @@ class ListCharacters extends StatefulWidget {
 }
 
 class _ListCharactersState extends State<ListCharacters> {
-  final int _persons_number = creatures.length;
+
+  static List<Character>? charList;
+  var _personNumber;
 
   bool _isGrid = false;
 
   //static creature singleCreature=creatures[0];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCharacters();
+  }
+
+  Future<void> _loadCharacters() async {
+    charList = await CharactersRepository().getCharactersList();
+    setState(() {
+      _personNumber = charList?.length ?? 0;
+    });
+  }
 
   void showCharacter(index) {
     setState(() {
@@ -78,7 +94,7 @@ class _ListCharactersState extends State<ListCharacters> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Всего персонажей: ${_persons_number}',
+                    'Всего персонажей: ${_personNumber}',
                     style:
                         const TextStyle(color: Color.fromRGBO(91, 105, 117, 1)),
                   ),
@@ -118,17 +134,17 @@ class _ListCharactersState extends State<ListCharacters> {
       return GridView.builder(
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: creatures.length,
+        itemCount: charList!.length,
         itemBuilder: (context, index) => CardForGrid(
-          myCreature: creatures[index],
+          myCharacter: charList![index],
 
         ),
       );
     }
     return ListView.builder(
-      itemCount: creatures.length,
+      itemCount: charList!.length,
       itemBuilder: (context, index) {
-        return CardForList(myCreature: creatures[index]);
+        return CardForList(myCharacter: charList![index]);
       },
     );
   }

@@ -1,21 +1,19 @@
-
 import 'package:flutter/material.dart';
-import 'package:untitled/models/creauture.dart';
+import 'package:untitled/models/character.dart';
 import 'package:go_router/go_router.dart';
-
-import '../main.dart';
+import 'package:untitled/main.dart';
 
 class CardForGrid extends StatelessWidget {
-  final creature myCreature;
+  final Character myCharacter;
 
-  const CardForGrid({super.key, required this.myCreature, this.onTap});
+  const CardForGrid({super.key, required this.myCharacter, this.onTap});
 
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {context.push('$character', extra: myCreature);
+      onTap: () {context.push('$character', extra: myCharacter);
 
       },
       child: SizedBox(
@@ -24,25 +22,25 @@ class CardForGrid extends StatelessWidget {
           children: [
             Image(
                 width: 100,
-                image: AssetImage(myCreature.img),
+                image: AssetImage(myCharacter.image),
                 fit: BoxFit.cover),
             const SizedBox(height: 9),
-            Text(myCreature.isLive,
+            Text(myCharacter.status,
                 style: TextStyle(
-                  color: (myCreature.isLive == 'живой')
+                  color: (myCharacter.status == 'live')
                       ? const Color.fromRGBO(67, 208, 73, 1)
                       : Colors.red,
                   fontSize: 10,
                 )),
             Text(
-              myCreature.name,
+              myCharacter.name,
               style: const TextStyle(
                 color: Color.fromRGBO(255, 255, 255, 1),
                 fontSize: 16,
               ),
             ),
             Text(
-              '${myCreature.rise}, ${myCreature.sex}',
+              '${myCharacter.species}, ${myCharacter.gender}',
               style: const TextStyle(
                 color: Color.fromRGBO(110, 121, 140, 1),
                 fontSize: 12,
